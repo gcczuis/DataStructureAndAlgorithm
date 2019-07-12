@@ -6,21 +6,13 @@ public class Solution1 {
 
     public void moveZeroes(int[] nums) {
         int l = nums.length;
-        int i = -1;//[0...i]包含全部非零元素
+        int i = 0;//[0...i)包含全部非零元素,[i,j)包含所有零元素，[j,l)是要探索的区域
         for (int j = 0; j < l; j++) {
-            if(nums[j] == 0) {
-                i = j - 1;
-                break;
+            if(nums[j] != 0) {
+                swap(nums,j,i);
+                i++;
             }
         }
-        //[i+1...k)为0
-        for (int k = i + 1; k < l; k++) {
-            if(nums[k] != 0){
-                swap(nums, k, i + 1);
-                i ++;
-            }
-        }
-
     }
 
 

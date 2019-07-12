@@ -9,9 +9,6 @@ public class Solution {
         int ret = nums.length, l = 0, r = nums.length;
         partition(nums, 0, nums.length - 1, k);
         return nums[nums.length - k];
-
-
-
     }
 
     /**
@@ -47,7 +44,7 @@ public class Solution {
         arr[j] = a;
 
     }
-   /* public static void main(String[] args){
+   /* public static void main(Solution[] args){
         int[] test = {-1,1,5,12,8,-1,0};
         partition(test, 0, test.length-1,2);
         for (int i = 0; i < test.length; i++) {

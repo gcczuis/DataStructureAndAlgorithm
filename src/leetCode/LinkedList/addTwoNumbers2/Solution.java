@@ -105,6 +105,16 @@ public class Solution {
         sb.append("NULL");
         return sb.toString();
     }
+    public static String linkedListToString2(ListNode head) {
+        ListNode cur = head;
+        StringBuilder sb = new StringBuilder();
+        while (cur != null) {
+            sb.append(cur.val + " ");
+            cur = cur.next;
+        }
+        sb.toString().substring(0,sb.length()-1);
+        return sb.toString();
+    }
 
     public static void main(String[] args){
         int[] arr = {2,4,3};

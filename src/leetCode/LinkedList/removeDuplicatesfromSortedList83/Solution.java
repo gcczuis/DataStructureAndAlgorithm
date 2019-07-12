@@ -1,6 +1,5 @@
 package leetCode.LinkedList.removeDuplicatesfromSortedList83;
 
-import java.util.HashSet;
 
 /**
  * @author: gcc
@@ -18,25 +17,20 @@ public class Solution {
     }
 
     public ListNode deleteDuplicates(ListNode head) {
-        if(head == null || head.next == null) {
-            return head;
-        }
-        HashSet<Integer> set = new HashSet<>();
-        ListNode pre = new ListNode(Integer.MAX_VALUE);
-        ListNode cur = head;
-        while(cur != null){
-            if(set.contains(cur.val)){
-                pre.next = cur.next;
-                cur = cur.next;
+        if(head == null)
+            return null;
+        ListNode pre = head;
+        ListNode cur = head.next;
+        while(cur!=null){
+            if(cur.val == pre.val){
+                pre.next = cur.next;//pre跳过重复的cur
+            }else{
+                pre = cur;//pre向前进一位
             }
-            if(cur != null){
-                set.add(cur.val);
-                cur = cur.next;
-            }
+            cur = cur.next;//cur向前进一位
         }
         return head;
     }
-
 
 
 }

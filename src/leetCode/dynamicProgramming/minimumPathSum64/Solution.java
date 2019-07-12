@@ -21,8 +21,8 @@ package leetCode.dynamicProgramming.minimumPathSum64;
  * 动态规划:
  * 状态:F(i, j)表示从左上角到A(i, j)的总和最小的数字
  * 状态转移方程:F(i,j) = min(F(i, j - 1), F(i - 1, j)) + A(i,j)          (0<=i<=m-1,0<j<=n-1)
- *                   = F(i - 1, j) + A(i,j)                            (0<=i<=m-1,j=0)
- *                   = F(i, j - 1) + A(i,j)                            (i=0,0<j<=n-1)
+ * = F(i - 1, j) + A(i,j)                            (0<=i<=m-1,j=0)
+ * = F(i, j - 1) + A(i,j)                            (i=0,0<j<=n-1)
  */
 public class Solution {
 
@@ -32,35 +32,23 @@ public class Solution {
         int m = grid.length;
         int n = grid[0].length;
         memo = new int[m][n];
+
         return minPathSumDP(grid, m - 1, n - 1);
-
-
     }
 
     //求出从左上角到A(i, j)的总和最小的数字
     private static int minPathSumDP(int[][] grid, int i, int j) {
-        if(memo[i][j] != 0){
-            return memo[i][j];
-        }
-        if (i == 0 && j == 0) {
-            memo[i][j] =  grid[i][j];
-        }
-        else if(j == 0){
-            memo[i][j] =  minPathSumDP(grid, i - 1, j) + grid[i][j];
-        }
-        else if(i == 0){
-            memo[i][j] =  minPathSumDP(grid, i,  j - 1) + grid[i][j];
-        }
-        else {
-            memo[i][j] =  Math.min(minPathSumDP(grid, i - 1, j),minPathSumDP(grid, i, j - 1)) + grid[i][j];
+        if (memo[i][j] == 0) {
+            if (i == 0 && j == 0) {
+                memo[i][j] = grid[i][j];
+            } else if (j == 0) {
+                memo[i][j] = minPathSumDP(grid, i - 1, j) + grid[i][j];
+            } else if (i == 0) {
+                memo[i][j] = minPathSumDP(grid, i, j - 1) + grid[i][j];
+            } else {
+                memo[i][j] = Math.min(minPathSumDP(grid, i - 1, j), minPathSumDP(grid, i, j - 1)) + grid[i][j];
+            }
         }
         return memo[i][j];
     }
-
-
-    public static void main(String[] args){
-        int[][] arr = {{1,3,1},{1,5,1},{4,2,1}};
-        System.out.println(minPathSum(arr));
-    }
-
 }

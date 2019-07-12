@@ -120,7 +120,6 @@ public class BST<E extends Comparable<E>> {
        inOrder(node.right);
    }
 
-    //二分搜索树的后序遍历，自带从小到大排序功能
     public void postOrder(){
         postOrder(root);
     }
@@ -238,10 +237,6 @@ public class BST<E extends Comparable<E>> {
                 return successor;
             }
         }
-
-
-
-
     }
 
     //查找BST的最大元素

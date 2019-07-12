@@ -3,7 +3,6 @@ package leetCode.sort.mergeSortedArray88;
 import java.util.Arrays;
 
 public class Solution {
-
     public void merge(int[] nums1, int m, int[] nums2, int n) {
         int[] nums3 = Arrays.copyOf(nums1, m);
         int length = nums1.length;
@@ -15,8 +14,5 @@ public class Solution {
             else if(nums3[j] <= nums2[k]) nums1[i++] = nums3[j++];
 
         }
-
-
-
     }
 }

@@ -19,7 +19,7 @@ public class Solution {
         return false;
     }
 
-/*    public static void main(String[] args){
+/*    public static void main(Solution[] args){
         int[] arr ={1,2,3,1};
         System.out.println(containsNearbyAlmostDuplicate(arr, 3, 0));
     }*/

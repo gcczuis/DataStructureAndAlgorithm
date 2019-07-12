@@ -1,17 +1,13 @@
 package algorithm.advancedSort;
 
-import java.util.Arrays;
 
 public class MergeSort {
-
     //辅助数组
     private static Comparable[] aux;
 
     private MergeSort() {
     }
-
     /**
-     *
      * @param arr 要排序的数组
      */
     public static void sort(Comparable[] arr){
@@ -22,18 +18,17 @@ public class MergeSort {
         sort(arr, 0, n-1);
 
     }
-
     //递归使用归并排序，对arr[l....r]的范围进行排序
     private static void sort(Comparable[] arr, int l, int r){
         if(l >= r)
             return;
+        //防止使用(l+r)/2发生整形溢出
         int mid = l + (r - l) / 2;
         sort(arr, l, mid);
         sort(arr, mid + 1, r);
         //归并左右两部分
         merge(arr, l, mid, r);
     }
-
 
     private static void merge(Comparable[] arr, int l, int mid, int r){
         for (int i = l; i <= r ; i++) {
@@ -51,11 +46,6 @@ public class MergeSort {
             else if(aux[i].compareTo(aux[j]) <= 0)   arr[k] = aux[i++];
             //aux[i-l].compareTo(aux[j-l]) > 0
             else                                    arr[k] = aux[j++];
-
-
-            
         }
-
-
     }
 }

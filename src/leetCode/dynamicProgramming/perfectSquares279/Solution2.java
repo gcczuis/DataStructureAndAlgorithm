@@ -63,6 +63,5 @@ public class Solution2 {
     public void test(){
         System.out.println(isPerfectSqure(2));
         System.out.println(numSquares(10000));
-
     }
 }

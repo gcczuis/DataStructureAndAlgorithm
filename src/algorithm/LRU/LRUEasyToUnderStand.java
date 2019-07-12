@@ -1,0 +1,98 @@
+package algorithm.LRU;
+
+import java.util.HashMap;
+
+/**
+ * {@author: gcc}
+ * {@Date: 2019/6/28 20:39}
+ * 也许可以加一个remove(key)方法，但这个比较简单
+ *
+ */
+public class LRUEasyToUnderStand {
+
+    class Node {
+        int key;
+        int value;
+        Node prev;
+        Node next;
+
+        public Node(int key, int value) {
+            this.key = key;
+            this.value = value;
+        }
+    }
+
+    Node head;
+    Node tail;
+    HashMap<Integer, Node> map;
+    int cap;
+
+    public LRUEasyToUnderStand(int capacity) {
+        this.cap = capacity;
+        this.map = new HashMap<>();
+    }
+
+    public int get(int key) {
+        if (map.get(key) == null) {
+            return -1;
+        }
+
+        //move to tail
+        Node t = map.get(key);
+
+        removeNode(t);
+        addlast(t);
+
+        return t.value;
+    }
+
+    public void put(int key, int value) {
+        if (map.containsKey(key)) {
+            Node t = map.get(key);
+            t.value = value;
+
+            //move to tail
+            removeNode(t);
+            addlast(t);
+        } else {
+            if (map.size() >= cap) {
+                //delete head
+                map.remove(head.key);
+                removeNode(head);
+            }
+
+            //add to tail
+            Node node = new Node(key, value);
+            addlast(node);
+            map.put(key, node);
+        }
+    }
+
+    private void removeNode(Node n) {
+        if (n.prev != null) {
+            n.prev.next = n.next;
+        } else {
+            head = n.next;
+        }
+
+        if (n.next != null) {
+            n.next.prev = n.prev;
+        } else {
+            tail = n.prev;
+        }
+    }
+
+    private void addlast(Node n) {
+        if (tail != null) {
+            tail.next = n;
+        }
+
+        n.prev = tail;
+        n.next = null;
+        tail = n;
+
+        if (head == null) {
+            head = tail;
+        }
+    }
+}

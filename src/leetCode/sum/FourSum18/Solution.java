@@ -38,7 +38,7 @@ public class Solution {
             }
             lastNum = nums[i];
         }
-            return rets;
+        return rets;
 
     }
 }

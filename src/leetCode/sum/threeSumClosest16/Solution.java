@@ -26,7 +26,7 @@ public class Solution {
         return ret;
     }
 
- /*  public static void  main(String[] args){
+ /*  public static void  main(Solution[] args){
         int[] arr = {-3,-2,-5,3,-4};
         System.out.println(threeSumClosest(arr, -1));
     }*/

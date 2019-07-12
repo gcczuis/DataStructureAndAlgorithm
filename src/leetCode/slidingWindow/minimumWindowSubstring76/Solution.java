@@ -35,8 +35,8 @@ public class Solution {
         }
         return ret;
     }
-   /*public static void main(String[] args){
-        String s = "ADOBECODEBANC";
+   /*public static void main(Solution[] args){
+        Solution s = "ADOBECODEBANC";
         minWindow(s, "ABC");
     }*/
 

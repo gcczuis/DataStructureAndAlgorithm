@@ -1,16 +1,62 @@
 package leetCode.mapAndSet.wordPattern290;
 
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 
 public class Solution {
-    public boolean wordPattern(String pattern, String str) {
+    public static boolean wordPattern(String pattern, String str) {
+        char[] patterns = pattern.toCharArray();
+        Map<Character,String> maps = new HashMap<>();
         String[] strs = str.split(" ");
+
+        if(patterns.length != strs.length)
+            return false;
+
+        for(int i = 0;i<patterns.length;i++){
+            char ch = patterns[i];
+            if(maps.containsKey(ch)){
+                String value = maps.get(ch);
+                if(!value.equals(strs[i]))
+                    return false;
+            }else{
+                if(maps.containsValue(strs[i]))
+                    return false;
+                maps.put(ch,strs[i]);
+            }
+        }
+        return true;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        /*Solution[] strs = str.split(" ");
         if(pattern.length() != strs.length) return false;
-        HashMap<String, Character> map1 = new HashMap<>();
-        HashMap<Character, String> map2 = new HashMap<>();
+        HashMap<Solution, Character> map1 = new HashMap<>();
+        HashMap<Character, Solution> map2 = new HashMap<>();
         for (int i = 0; i < pattern.length(); i++) {
             Character c = pattern.charAt(i);
-            String s = strs[i];
+            Solution s = strs[i];
             if(map2.containsKey(c)){
                 if(map2.get(c).equals(s)) continue;
                 else return false;
@@ -24,7 +70,11 @@ public class Solution {
                 map2.put(c,s);
             }
         }
-        return true;
+        return true;*/
 
+    }
+
+    public static void main(String[] args) {
+        System.out.println(wordPattern("abba", "dog cat cat dog"));
     }
 }

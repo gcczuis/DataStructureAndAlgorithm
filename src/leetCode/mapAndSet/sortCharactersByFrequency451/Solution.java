@@ -1,11 +1,11 @@
 package leetCode.mapAndSet.sortCharactersByFrequency451;
 
-import dataStructure.maxheap.MaxHeap;
 
 import java.util.HashMap;
+import java.util.PriorityQueue;
 
 public class Solution {
-    private class Node implements  Comparable<Node> {
+    private class Node implements Comparable<Node> {
         public char c;
         public int freq;
 
@@ -16,7 +16,7 @@ public class Solution {
 
         @Override
         public int compareTo(Node o) {
-            return this.freq - o.freq;
+            return o.freq - this.freq;//反序，因为最大的排前面
         }
     }
 
@@ -28,19 +28,15 @@ public class Solution {
             if(map.containsKey(c)) map.put(c,map.get(c) + 1);
             else map.put(c, 1);
         }
-        MaxHeap<Node> maxHeap = new MaxHeap();
-        for (char c: map.keySet()) {
-            maxHeap.add(new Node(c,map.get(c)));
-        }
+        PriorityQueue<Node> queue = new PriorityQueue<>();
+        map.entrySet().forEach(entry-> queue.add(new Node(entry.getKey(),entry.getValue())));
         StringBuilder ret = new StringBuilder();
-        while(!maxHeap.isEmpty()) {
-            Node n = maxHeap.extractMax();
+        while(!queue.isEmpty()) {
+            Node n = queue.poll();
             for (int j = 0; j < n.freq; j++) {
                 ret.append(n.c);
             }
         }
         return ret.toString();
-
     }
-
 }

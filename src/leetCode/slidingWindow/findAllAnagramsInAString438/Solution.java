@@ -39,8 +39,8 @@ public class Solution {
         return ret;
     }
 
-   /* public static void main(String[] args){
-        String s = "aa";
+   /* public static void main(Solution[] args){
+        Solution s = "aa";
         findAnagrams(s,"bb");
 
     }*/

@@ -16,67 +16,30 @@ class Solution {
             val = x;
         }
     }
-
     public static ListNode reverseBetween(ListNode head, int m, int n) {
-        if (head == null || m == n) {
-            return head;
-        }
-        ListNode NodeM = null;
-        ListNode LastNodeM = null;
-        ListNode NodeN = null;
-        ListNode nextNodeN = null;
-        ListNode dummyHead = new ListNode(0);
+        ListNode dummyHead = new ListNode(0);//保证算法范围包括头结点
         dummyHead.next = head;
-        ListNode cur = dummyHead;
-
-        for (int i = 1; i < n + 1; i++) {
-            cur = cur.next;
-            if (i == m) {
-                NodeM = cur;
-            } else if (i == m - 1) {
-                LastNodeM = cur;
-            } else if (i == n) {
-                NodeN = cur;
-                nextNodeN = cur.next;
-                cur.next = null;
-            }
+        ListNode pre = dummyHead;
+        for (int i = 0; i < m-1; i++) {
+            pre = pre.next;
         }
-        ListNode listNode = reverseList(NodeM);
-        NodeM.next = nextNodeN;
-        if (m != 1) {
-            LastNodeM.next = listNode;
-            return head;
-        }
-        return listNode;
+        ListNode cur = pre.next;
+        ListNode next = cur.next;
 
+        for (int i = 0; i < n - m; i++) {
+            cur.next = next.next;
+            next.next = pre.next;
+            pre.next = next;
+            next = cur.next;
+        }
+        return dummyHead.next;
 
     }
-
-
-    public static ListNode reverseList(ListNode head) {
-        if (head == null) {
-            return null;
-        }
-        ListNode pre = null;
-        ListNode cur = head;
-
-        ListNode nextNode = cur.next;
-        while (cur != null) {
-            nextNode = cur.next;
-            cur.next = pre;
-            pre = cur;
-            cur = nextNode;
-        }
-        return pre;
-    }
-
-
-
-
-  /*  public static void main(String[] args) {
+/*
+    public static void main(Solution[] args) {
         int[] arr = {1, 2, 4, 5, 6, 7, 8, 3, 2, 1};
         ListNode node = createLinkedList(arr, 10);
-        node = reverseBetween(node, 1, 10);
+        node = reverseBetween(node, 3, 7);
         System.out.println(linkedListToString(node));
 
     }*/

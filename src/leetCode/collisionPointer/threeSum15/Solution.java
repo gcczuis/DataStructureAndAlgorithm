@@ -49,7 +49,7 @@ public class Solution {
         return rets;
     }
 
-  /*  public static void main(String[] args){
+  /*  public static void main(Solution[] args){
         int[] nums = {2,1,4,-1,-5,0,1,-2};
         List<List<Integer>> lists = threeSum(nums);
         for (int i = 0; i < lists.size(); i++) {

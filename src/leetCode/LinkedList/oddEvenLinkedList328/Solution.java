@@ -58,6 +58,7 @@ public class Solution {
         return head;
     }
 
+
     public static ListNode createLinkedList(int[] arr, int n) {
         if (arr.length < n && n == 0) {
             return null;

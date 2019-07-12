@@ -18,7 +18,7 @@ public class Solution {
                 if(map1.get(d).equals(c)) continue;
                 else return false;
             }
-            if(!map1.containsKey(d) && !map2.containsKey(c)){
+            else if(!map1.containsKey(d) && !map2.containsKey(c)){
                 map1.put(d,c);
                 map2.put(c,d);
             }
